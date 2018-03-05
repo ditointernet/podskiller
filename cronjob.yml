@@ -1,4 +1,4 @@
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: podskiller
@@ -6,8 +6,10 @@ spec:
   schedule: "@daily"
   jobTemplate:
     spec:
-      containers:
-      - name: podskiller
-        image: ditointernet/podskiller:0.1.0
-        command: ["/podskiller", "-regex", "pod-name.+"]
-      restartPolicy: OnFailure
+      template:
+        spec:
+          containers:
+          - name: podskiller
+            image: ditointernet/podskiller:0.1.0
+            command: ["/podskiller", "-regex", "pod-name.+"]
+          restartPolicy: OnFailure
