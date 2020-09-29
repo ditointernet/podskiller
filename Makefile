@@ -20,5 +20,4 @@ run:
 	$(GOBUILD) -o $(BINARY_DEV) -v ./...
 	./$(BINARY_DEV)
 build-container:
-	CGO_ENABLED=0 GOOS=linux $(GOBUILD) -a -installsuffix cgo -o $(BINARY_NAME) -v .
 	docker build -t ditointernet/podskiller:latest .
